@@ -1,0 +1,170 @@
+
+<html>
+  <head>
+      <title>Clock</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="style.css" />
+      <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+
+      body {
+        background-color: rgba(9, 84, 147, 0.71);
+      }
+
+      .clock {
+        height: 500px;
+        width: 500px;
+        background-color: rgb(236, 79, 79);
+        border-radius: 100%;
+        border: 3px solid rgb(35, 6, 249);
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+
+
+      .twelve {
+        position: absolute;
+        width: 3px;
+        height: 15px;
+        background: #111111;
+        left: 0;
+        top: 0;
+        right: 0;
+        margin: 0 auto;
+      }
+
+      .three {
+        position: absolute;
+        width: 15px;
+        height: 3px;
+        background: #111111;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto 0;
+      }
+
+      .six {
+        position: absolute;
+        width: 3px;
+        height: 15px;
+        background: #111111;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: 0 auto;
+      }
+
+      .nine {
+        position: absolute;
+        width: 15px;
+        height: 3px;
+        background: #111111;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto 0;
+      }
+
+
+      .center {
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        margin: auto;
+        background: #000;
+        border-radius: 100%;
+      }
+
+      #seconds {
+        position: absolute;
+        height: 160px;
+        width: 2px;
+        left: 0;
+        right: 0;
+        bottom: 160px;
+        top: 0px;
+        margin: auto;
+        background: #000;
+        -webkit-transform-origin: bottom;
+        background: rgb(106, 9, 162);
+      }
+
+      #minutes {
+        position: absolute;
+        height: 200px;
+        width: 2px;
+        left: 0;
+        right: 0;
+        bottom: 200px;
+        top: 0px;
+        margin: auto;
+        background: #000;
+        -webkit-transform-origin: bottom;
+      }
+
+      #hours {
+        position: absolute;
+        height: 80px;
+        width: 6px;
+        left: 0;
+        right: 0;
+        bottom: 80px;
+        top: 0px;
+        margin: auto;
+        background: rgb(203, 221, 30);
+        -webkit-transform-origin: bottom;
+      }
+    </style>
+  </head>
+
+  <body>
+
+      <div class="clock">
+          <div id="hours"></div>
+          <div id="minutes"></div>
+          <div id="seconds"></div>
+          <div class="three"></div>
+          <div class="six"></div>
+          <div class="nine"></div>
+          <div class="twelve"></div>
+          <div class="center"></div>
+      </div>
+
+    <script type="text/javascript">
+      
+
+    function moveHands() {
+      with (new Date()) {
+        h = 30 * ((getHours() % 12) + getMinutes() / 60); // 30 degrees hour
+        m = 6 * getMinutes(); // 6 degrees every minute
+        s = 6 * getSeconds(); // 6 degrees every second
+        // setting the rotate CSS attribute to those degree values -->
+        document.getElementById("seconds").style.cssText =
+          "-webkit-transform:rotate(" + s + "deg);";
+        document.getElementById("minutes").style.cssText =
+          "-webkit-transform:rotate(" + m + "deg);";
+        document.getElementById("hours").style.cssText =
+          "-webkit-transform:rotate(" + h + "deg);";
+
+        setTimeout(moveHands, 1000); // calling the function every second
+      }
+    }
+
+    window.onload = moveHands; // making sure the function starts on load of webpage
+    </script>
+  </body>  
+  </html>
+
